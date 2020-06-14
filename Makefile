@@ -12,7 +12,7 @@ OBJS = \
 	log.o\
 	main.o\
 	mp.o\
-	picirq.o\
+	picirq.o\   
 	pipe.o\
 	proc.o\
 	sleeplock.o\
