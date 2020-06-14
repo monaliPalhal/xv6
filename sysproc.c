@@ -89,3 +89,5 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+void sys_Lseek1(){}
+void sys_Lseek2(){}
