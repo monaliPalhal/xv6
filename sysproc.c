@@ -6,7 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
-
+#include ”fcntl.h”
 int
 sys_fork(void)
 {
@@ -89,5 +89,55 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
-void sys_Lseek1(){}
-void sys_Lseek2(){}
+void sys_Lseek1(char *name,int offset,int len,char *string){
+  char str[512] ; 
+	int sz;
+  int fd = open(name, O_RDONLY);
+	//does lseek offset
+	lseek(fd,offset,SEEK_CUR);
+	//reads data of length len
+	read(fd, str,len);
+	//verify that data is same as string
+	if(string == str){
+		printf("they data and string are same");
+	}
+	else{
+		printf("they data and string are not same");
+	}
+	close(fd);
+	
+	exit();
+  
+}
+void sys_Lseek2(char *name){
+  char str[512] ; 
+	int sz,i;
+	//open filename
+	int fd = open(name, O_RDONLY);
+	int fd1 = open("copy.txt",O_CREAT|O_RDWR);
+	//get size of file
+	int size = lseek(fd,0,SEEK_END);
+	// dived file in 10 part
+	int part = size / 10;
+	int rem=size%10;
+	int offset = 0;
+	//set pointer at begining
+	lseek(fd,0,SEEK_CUR);
+	for(i=0;i<10;i++){
+		//read part and write in file
+		sz = read(fd, str,part);
+		write(fd1,str,sz);
+		//add offset
+		offset = offset + part;
+		//set pointer to offset of file 
+		lseek(fd,offset,SEEK_CUR);
+	}
+	if(rem != 0){
+		//read rem from fd and write in fd1
+		sz = read(fd, str,rem);
+		write(fd1,str,sz);
+	}
+	close(fd);
+	close(fd1);
+	exit(); 
+}
