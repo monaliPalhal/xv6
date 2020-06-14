@@ -37,5 +37,5 @@ void* memset(void*, int, uint);
 void* malloc(uint);
 void free(void*);
 int atoi(const char*);
-void Lseek1(char* ,int,int,char*);
-void Lseek2(char*);
+int Lseek1(char* ,int,int,char*);
+int Lseek2(char*);
