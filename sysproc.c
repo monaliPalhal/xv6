@@ -89,7 +89,7 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
-void sys_Lseek1(char *name,int offset,int len,char *string){
+int sys_Lseek1(char *name,int offset,int len,char *string){
   char str[512] ; 
 	int sz;
   int fd = open(name, O_RDONLY);
@@ -109,7 +109,7 @@ void sys_Lseek1(char *name,int offset,int len,char *string){
 	exit();
   
 }
-void sys_Lseek2(char *name){
+int sys_Lseek2(char *name){
   char str[512] ; 
 	int sz,i;
 	//open filename
