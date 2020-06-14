@@ -11,7 +11,7 @@ int
 sys_fork(void)
 {
   return fork();
-}
+} 
 
 int
 sys_exit(void)
