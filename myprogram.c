@@ -7,3 +7,4 @@ int main(int argc,char *argv[5]){
 	printf(1,"call function to match given file with new copied file",Lseek2(argv[1]);
 exit();	
 }
+ 
